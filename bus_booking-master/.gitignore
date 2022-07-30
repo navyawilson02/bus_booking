@@ -1,7 +1,0 @@
-venv/
-.idea
-.env
-*/migrations/*
-logs/*
-
-*/__pycache__
