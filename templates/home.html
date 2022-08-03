@@ -1,0 +1,23 @@
+{% extends 'root.html' %}
+
+<form method="get" action="/home/buses">
+  <label for="source">source:</label>
+  <select name="source">
+
+      {% for place in places %}
+        <option value="{{place}}">{{place}}</option>
+      {% endfor %}
+  </select>
+    <label for="dest">destination:</label>
+  <select name="dest">
+
+      {% for place in places %}
+        <option value="{{place}}">{{place}}</option>
+      {% endfor %}
+  </select>
+        <label for="date">date:</label>
+
+    <input type="date" name="date"/>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
