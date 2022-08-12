@@ -1,0 +1,7 @@
+.dropdown-menu a{
+    color: black !important;
+}
+
+.dropdown-menu>li{
+    margin: 5px 5px !important;
+}

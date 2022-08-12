@@ -1,0 +1,22 @@
+
+{% extends 'root.html' %}
+{% load static %}
+{% block title %}
+    Sign up
+{% endblock %}
+ {% block css %} {{block.super}}
+<link href="{% static 'css/login.css' %}" rel="stylesheet" />
+{% endblock %} 
+{% block form %}
+<div class="full-wrap">
+<div class="login-wrap">
+	<div class="login-html">
+		<div style="display:flex;justify-content:center;align-items:center;flex-direction:column;">
+            <h1 style="color:white">Signed up successfully</h1>
+            <h3 class="login-after"> <a href="/login">Login</a></h3>
+        </div>
+	</div>
+</div>
+</div>
+          
+      {% endblock %}

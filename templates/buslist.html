@@ -1,5 +1,56 @@
+{% extends 'root.html' %} {% load static %} {% block css %} {{ block.super }}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/buslist.css' %}" rel="stylesheet"/>
+    {% comment %}
+<link href="{% static 'css/home_boot.css' %}" rel="stylesheet" /> {% endcomment %}
+{% endblock %}
+{% block body %}
+{% include 'topnav.html' %}
 
-      {% for bus in buses %}
-        {{bus}}
-      <a href="book/?id={{bus.id}}">Book</a>
-      {% endfor %}
+    <div class="wrap">
+        {% if buses %}
+
+            {% for bus in buses %}
+                <div class="bus-card">
+                    <div>
+                        <div>
+                            {{ bus.start.time }}<i class="fa fa-arrow-right"
+                                                   style="margin: 3px"></i>{{ bus.end.time }}
+                        </div>
+                        <div style="color:#ff6669;font-weight: bold">
+                            {{ bus.bus.no }}
+                        </div>
+                    </div>
+                    <div class="vr"></div>
+                    <div class="bus-card-middle">
+                        <div style="margin: 3px;">₹ {{ bus.cost }}</div>
+
+                    </div>
+                    <div class="vr">
+
+                    </div>
+
+                    <div>
+                        Seats
+                        {{ bus.available_seats }}
+                    </div>
+                    <div class="vr"></div>
+
+                    <div>
+                        <a class="book"
+                           href="{% if bus.available_seats != 0 %}/home/select/?id={{ bus.id }}&fro={{ bus.start.id }}&to={{ bus.end.id }}{% endif %}">
+                            {% if bus.available_seats != 0 %}Book{% else %} Sold Out{% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div>
+{#                    {{ bus }}#}
+                </div>
+
+            {% endfor %}
+        {% else %}
+            No bus.
+        {% endif %}
+    </div>
+
+{% endblock %}

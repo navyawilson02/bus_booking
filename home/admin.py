@@ -10,11 +10,11 @@ class RoutesAdmin(admin.ModelAdmin):
     inlines = [
         PointsInline
     ]
-
+admin.site.register(Traveller)
 admin.site.register(Bus)
 admin.site.register(Route, RoutesAdmin)
 admin.site.register(Points)
 admin.site.register(Ticket)
 admin.site.register(Working_days)
-admin.site.register(Seats)
+admin.site.register(Stops)
 

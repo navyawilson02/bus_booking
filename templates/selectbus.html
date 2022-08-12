@@ -1,0 +1,236 @@
+{% extends 'root.html' %} {% load static %}
+{% block css %} {{ block.super }}
+    <link href="{% static 'css/bus_select.css' %}" rel="stylesheet"/>
+    {% comment %}
+<link href="{% static 'css/home_boot.css' %}" rel="stylesheet" /> {% endcomment %}
+{% endblock %}
+{% block body %}
+{% include 'topnav.html' %}
+
+    {#    <div class="bus">#}
+    {##}
+    {##}
+    {#        <div class="bus-book-seat">#}
+    {#            <div class="bus-body">#}
+    {#                <ol class="seats economy bus-frame">#}
+    {#                    <li class="seat"><input type="checkbox" id="1A"><label for="1A">1A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="1B"><label for="1B">1B</label></li>#}
+    {#                    <li class="seat not-used"><input type="checkbox" id="1C" disabled><label for="1C">1C</label></li>#}
+    {#                    <li class="seat not-used"><input type="checkbox" id="1D" disabled><label for="1D">1D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="2A"><label for="2A">2A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="2B"><label for="2B">2B</label></li>#}
+    {#                    <li class="seat not-used"><input type="checkbox" id="2C" disabled><label for="2C">2C</label></li>#}
+    {#                    <li class="seat not-used"><input type="checkbox" id="2D" disabled><label for="2D">2D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="3A"><label for="3A">3A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="3B"><label for="3B">3B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="3C"><label for="3C">3C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="3D"><label for="3D">3D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="4A" disabled><label for="4A">4A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="4B" disabled><label for="4B">4B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="4C"><label for="4C">4C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="4D"><label for="4D">4D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="5A"><label for="5A">5A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="5B"><label for="5B">5B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="5C"><label for="5C">5C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="5D"><label for="5D">5D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="6A" disabled><label for="6A">6A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="6B"><label for="6B">6B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="6C"><label for="6C">6C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="6D" disabled><label for="6D">6D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="7A"><label for="7A">7A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="7B"><label for="7B">7B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="7C"><label for="7C">7C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="7D"><label for="7D">7D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="8A"><label for="8A">8A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="8B"><label for="8B">8B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="8C"><label for="8C">8C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="8D"><label for="8D">8D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="9A"><label for="9A">9A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="9B"><label for="9B">9B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="9C"><label for="9C">9C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="9D"><label for="9D">9D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="10A"><label for="10A">10A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="10B"><label for="10B">10B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="10C"><label for="10C">10C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="10D"><label for="10D">10D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="11A"><label for="11A">11A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="11B"><label for="11B">11B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="11C"><label for="11C">11C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="11D"><label for="11D">11D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="12A"><label for="12A">12A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="12B"><label for="12B">12B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="12C"><label for="12C">12C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="12D"><label for="12D">12D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="13A"><label for="13A">13A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="13B"><label for="13B">13B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="13C"><label for="13C">13C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="13D"><label for="13D">13D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="14A"><label for="14A">14A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="14B"><label for="14B">14B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="14C"><label for="14C">14C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="14D"><label for="14D">14D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="15A"><label for="15A">15A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="15B"><label for="15B">15B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="15C"><label for="15C">15C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="15D"><label for="15D">15D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="16A"><label for="16A">16A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="16B"><label for="16B">16B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="16C"><label for="16C">16C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="16D"><label for="16D">16D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="17A"><label for="17A">17A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="17B"><label for="17B">17B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="17C"><label for="17C">17C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="17D"><label for="17D">17D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="18A"><label for="18A">18A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="18B"><label for="18B">18B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="18C"><label for="18C">18C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="18D"><label for="18D">18D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="19A"><label for="19A">19A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="19B"><label for="19B">19B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="19C"><label for="19C">19C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="19D"><label for="19D">19D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="20A"><label for="20A">20A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="20B"><label for="20B">20B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="20C"><label for="20C">20C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="20D"><label for="20D">20D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="21A"><label for="21A">21A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="21B"><label for="21B">21B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="21C"><label for="21C">21C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="21D"><label for="21D">21D</label></li>#}
+    {##}
+    {#                    <li class="seat"><input type="checkbox" id="22A"><label for="22A">22A</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="22B"><label for="22B">22B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="22C"><label for="22C">22C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="22D"><label for="22D">22D</label></li>#}
+    {##}
+    {#                    <li class="seat not-used"><input type="checkbox" id="23A" disabled><label for="23A">23A</label></li>#}
+    {#                    <li class="seat not-used"><input type="checkbox" id="23B" disabled><label for="23B">23B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="23C"><label for="23C">23C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="23D"><label for="23D">23D</label></li>#}
+    {##}
+    {#                    <li class="seat not-used"><input type="checkbox" id="24A" disabled><label for="24A">24A</label></li>#}
+    {#                    <li class="seat not-used"><input type="checkbox" id="24B" disabled><label for="24B">24B</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="24C"><label for="24C">24C</label></li>#}
+    {#                    <li class="seat"><input type="checkbox" id="24D"><label for="24D">24D</label></li>#}
+    {#                </ol>#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+
+    <form method="POST" class="search-box" action="/home/book/">
+        {% csrf_token %}
+        <input type="hidden" value="{{ bus.id }}" name="id">
+        <input type="hidden" value="{{ to }}" name="to">
+        <input type="hidden" value="{{ fro }}" name="fro">
+        <div class="form-group">
+            <label for="seat" style="font-size: 23px;">seats:</label>
+            <div class="bus">
+                <div class="bus-book-seat">
+                    <div class="bus-body">
+                        <ol class="seats economy bus-frame">
+                            {% for seat in available_seats %}
+                                <li class="seat"><input name="seats" type="checkbox" id="{{ seat.no }}"
+                                                        onclick="handleClick(this)" value={{ seat.no }}
+                                                                {% if seat.booked %} disabled {% endif %}
+                                ><label
+                                        for="{{ seat.no }}"
+                                        >{{ seat.no }}</label>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="padding: 20px;font-weight: bold">
+            Cost per person: {{ cost }}
+        </div>
+        <div id="travellers">
+
+        </div>
+        <button id="book-btn" disabled>
+            Book
+        </button>
+    </form>
+    <script>
+        let total_seats = 0;
+
+        function handleClick(target) {
+            const btn = document.getElementById("book-btn");
+            console.log(target.value);
+            if (target.checked) {
+                total_seats++;
+                add_traveller(target.value);
+            } else {
+                remove_traveller(target.value);
+                total_seats--;
+
+            }
+            if (total_seats)
+                btn.removeAttribute("disabled");
+            else
+                btn.setAttribute("disabled", "true");
+
+        }
+
+        function add_traveller(seat) {
+            console.log(seat)
+            let objTo = document.getElementById('travellers');
+            let divtest = document.createElement("div");
+            divtest.setAttribute("id", "seat-" + seat)
+            divtest.setAttribute("class", "form-group tr-detail ");
+            let rdiv = 'removeclass' + seat;
+            divtest.innerHTML = `
+            <div class="tr-wrap">
+                <div class="tr-heading">Details of passeger for seat ${seat}</div>
+<div class="tr-fields-wrap">
+ <div class="col-sm-3 nopadding">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Name">
+                </div></div><div class="col-sm-3 nopadding"><div class="form-group">
+                 <input type="text" class="form-control" name="age"  placeholder="Age"></div></div><div class="col-sm-3 nopadding"><div class="form-group">
+                <select name="gender" placeholder="gender" class="form-select">
+                    <option hidden >Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="O">Other</option>
+                </select>
+</div></div><div class="clear"></div>
+</div>
+
+            </div>
+
+`
+            objTo.appendChild(divtest)
+        }
+
+        function remove_traveller(seat) {
+            document.getElementById('seat-' + seat).remove();
+        }
+
+        console.log(Array.from(document.getElementsByName("seats")).map(s => s.checked))
+
+    </script>
+{% endblock %}

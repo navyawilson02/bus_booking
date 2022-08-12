@@ -102,6 +102,17 @@ TEMPLATES = [
         },
     },
 ]
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bus_management',
+        'USER': 'mysql',
+        'PASSWORD': '456123',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -120,12 +131,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

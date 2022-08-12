@@ -4,50 +4,74 @@
 {% block title %}
     Sign In
 {% endblock %}
-
+ {% block css %} {{block.super}}
+<link href="{% static 'css/login.css' %}" rel="stylesheet" />
+{% endblock %} 
 {% block form %}
-
-<div  style="height: 100%" class="col-md-4 pt-5">
-
-
-      <div style="color:#696F79" class="row d-flex align-items-center ">
-          <figure style="color: #000000" class="text-center"><h1 class="fw-bold">Login</h1>
-            </figure>
-        <form action="/login/?{{ request.META.QUERY_STRING }}"
-              method="POST">
-            {% csrf_token %}
-            {% if pswderr %}
+<div class="full-wrap">
+<div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<form action="/login/?next=/home"
+              method="POST" class="sign-in-htm">
+              {% csrf_token %}
+              {% if pswderr %}
                 <div class=" text-danger text-center" role="alert">
                     <i class="fa fa-exclamation-circle"></i> {{ pswderr }}
                 </div>
-           {% endif %}
-            <div class="input-fields " >
-
-                <div class=" mb-4 d-flex flex-column  align-items-center ">
-                <div class="mb-4 d-flex flex-column " style="width:350px;margin-right: auto;margin-left: auto ">
-                    <label  class="form-label input-label " for="email" >Email or username * </label>
-                     <input name="email" type="text" id="email" placeholder="Enter email or username" class="form-control  form-control-lg text-input mb-4" required  style=" height:70px"/>
-                    <label class="form-label input-label " for="password"  >Password*</label>
-                    <div class="password-container">
-                    <input  type="password" name="password" id="password" placeholder="Enter password" class="form-control form-control-lg text-input password-input"  style=" height:70px " required />
-                    <span onclick="show_password('password','password-visibility')" class="visibility" id="password-visibility">show</span>
-                    </div>
-                    </div>
+            {% endif %}
+				<div class="group">
+					<label for="user" class="label">Username</label>
+					<input name="email" id="user" type="text" class="input">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input name="password" id="pass" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign In">
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<a href="#forgot">Forgot Password?</a>
+				</div>
+            </form>
+			<form action="/signup/?next=/signup_succ" method="POST" class="sign-up-htm">
+            {% csrf_token %}
+              {% if pswderr %}
+                <div class=" text-danger text-center" role="alert">
+                    <i class="fa fa-exclamation-circle"></i> {{ pswderr }}
                 </div>
-                <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-lg btn-block submit-btn" >Login Account</button>
-                </div>
-
-           <div style="color: #000000;" class="d-flex justify-content-center">
-
-           </div>
-                <div class=" text-center ">
-                 <p  class="new-to"><a class="signin-link" href="/signup?{{ request.META.QUERY_STRING }}">Register </a>
-                </div>
-            </div>
-        </form>
-      </div>
-
-      </div>
-
+            {% endif %}
+				<div class="group">
+					<label for="user" class="label">Username</label>
+					<input name="username" id="user" type="text" class="input">
+				</div>
+                <div class="group">
+					<label for="email" class="label">Email</label>
+					<input name="email" id="email" type="text" class="input">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" name="password" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Repeat Password</label>
+					<input name="password retype" id="pass" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up">
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<label for="tab-1">Already Member?</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+          
       {% endblock %}

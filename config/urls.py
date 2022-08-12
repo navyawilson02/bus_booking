@@ -6,6 +6,8 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions, authentication
 
+import home.views
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -33,5 +35,8 @@ urlpatterns = [
                   path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
                   path(settings.ADMIN_URL + 'log_viewer/', include('log_viewer.urls')),
                   path(settings.ADMIN_URL, admin.site.urls),
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'home.views.view_404'

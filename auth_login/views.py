@@ -69,6 +69,10 @@ def get_client_ip(request):
 
     return ip
 
+def signup_succ(request):
+    return render(request, template_name='signup_success.html')
+
+
 
 @ensure_csrf_cookie
 def signin(request):
@@ -84,15 +88,16 @@ def signin(request):
             if user is not None:
                 login(request, user)
                 # Redirect to a success page.
-                redirect_location = request.GET.get('next', '/') + '?' + request.META['QUERY_STRING']
+                redirect_location = request.GET.get('next', '/')
                 return HttpResponseRedirect(redirect_location)
+            else:
+                context1['pswderr'] = "user does not exist"
         except User.DoesNotExist:
             context1['pswderr'] = "user does not exist"
 
     context1['sign_text'] = 'Sign In'
     context1['GOOGLE_CLIENT_ID'] = settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
     context1['google_redirect_uri'] = settings.DEPLOYMENT_URL + '/google-login'
-
     return render(request, template_name='login.html', context=context1)
 
 
@@ -123,7 +128,7 @@ def signup(request):
                     logger.info(f"created user {user.username} ")
                     token, _ = Tokens.objects.get_or_create(user=user)
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                    redirect_location = request.GET.get('next', '/') + '?' + request.META['QUERY_STRING']
+                    redirect_location = request.GET.get('next', '/')
                     return HttpResponseRedirect(redirect_location)
 
                 except IntegrityError as e:
@@ -146,8 +151,8 @@ def signup(request):
 @login_required
 def log_out(request):
     logout(request)
-    url = '/?' + request.META['QUERY_STRING']
-    return HttpResponseRedirect(url)
+    red = request.GET.get('next', '/')
+    return HttpResponseRedirect(red)
 
 
 def request_google(auth_code, redirect_uri):
