@@ -21,7 +21,6 @@ from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 def HomePage(request):
     print("HOMEEE")
     context = {}
-    context["home_name"] = "Sunith vs"
     stops = [StopSerializer(stop).data for stop in Stops.objects.all()]
     context["places"] = stops
     return render(request, template_name="home.html", context=context)
@@ -49,8 +48,9 @@ def BusList(request):
             if point.place.id == int(end):
                 end_order = point.order
                 end_point = point
-        cost = day.bus.cost_per_km * (end_point.distance - start_point.distance)
+
         if count == 2 and (start_order < end_order):
+            cost = day.bus.cost_per_km * (end_point.distance - start_point.distance)
             result.append(dict(WorkingDaySerializer(day).data,
                                **{"start": PointSerializer(start_point).data, "end": PointSerializer(end_point).data,
                                   "cost": cost}))
@@ -74,16 +74,17 @@ def BookBus(request):
     to = data.get('to')
     fro = data.get('fro')
 
-    print(seats)
     if not id or not seats or not to or not fro:
         return HttpResponseBadRequest("Sufficient data not sent")
+
     day = Working_days.objects.filter(id=id).all()[0]
     to_point = Points.objects.get(id=to)
     fro_point = Points.objects.get(id=fro)
     if fro_point.route != to_point.route:
         return HttpResponseBadRequest("To and from are from different routes.")
-    if fro_point.route.bus_route != day.bus:
-        return HttpResponseBadRequest("Invalid points.")
+    print(fro_point.route.bus_route)
+    # if fro_point.route.bus_route != day.bus:
+    #     return HttpResponseBadRequest("Invalid points.")
 
     bus_day = WorkingDaySerializer(day).data
 
@@ -119,11 +120,10 @@ def SelectBus(request):
         return HttpResponseBadRequest("Invalid details")
     if fro_point.route != to_point.route:
         return HttpResponseBadRequest("To and from are from different routes.")
-    if fro_point.route.bus_route != bus_day.bus:
-        return HttpResponseBadRequest("Invalid points.")
+    # if fro_point.route.bus_route != bus_day.bus:
+    #     return HttpResponseBadRequest("Invalid points.")
 
     cost = bus_day.bus.cost_per_km * (to_point.distance - fro_point.distance)
-
     return render(request, template_name="selectbus.html",
                   context=dict(WorkingDayDetailedSerializer(bus_day).data, **{'to': to, 'fro': fro, 'cost': cost}))
 
@@ -134,6 +134,13 @@ def Tickets(request):
 
     return render(request, template_name="tickets.html",
                   context={"tickets": [TicketSerializer(ticket).data for ticket in tickets]})
+
+
+@login_required(login_url="/login")
+def TicketCancel(request):
+    tickets = Ticket.objects.filter(booked_by=request.user, id=request.GET.get('id')).all()
+    tickets[0].delete()
+    return redirect("/home/tickets")
 
 
 def view_404(request, exception=None):

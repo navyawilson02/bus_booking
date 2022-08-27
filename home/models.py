@@ -1,3 +1,4 @@
+from datetime import timedelta, date
 from pyexpat import model
 from django.db import models
 from django.db.models import CheckConstraint, Q, F
@@ -28,12 +29,10 @@ class Traveller(models.Model):
 
 
 class Route(models.Model):
-
-    fro = models.CharField(max_length=20)
-    to = models.CharField(max_length=20)
+    name = models.CharField(max_length=40)
 
     def __str__(self):
-        return f'{self.id}:{self.fro}-{self.to}'
+        return f'{self.id}:{self.name}'
 
 
 class Bus(models.Model):
@@ -41,12 +40,23 @@ class Bus(models.Model):
     no = models.CharField(max_length=20, unique=True)
     type = models.CharField(choices=bustype, max_length=3)
     capacity = models.IntegerField()
-    route = models.OneToOneField(
+    route = models.ForeignKey(
         Route, related_name='bus_route', on_delete=models.CASCADE)
     cost_per_km = models.IntegerField()
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        start_date = date.today()
+        end_date = start_date + timedelta(days=365)
+        delta = timedelta(days=1)
+        days = []
+        while start_date <= end_date:
+            days.append(Working_days(day=start_date, bus=self))
+            start_date += delta
+        Working_days.objects.bulk_create(days)
+
     def __str__(self):
-        return f'{self.id}:{self.no}'
+        return f'{self.id}:{self.no}:{self.route}'
 
 
 class Stops(models.Model):

@@ -140,7 +140,7 @@
 
     <form method="POST" class="search-box" action="/home/book/">
         {% csrf_token %}
-        <input type="hidden" value="{{ bus.id }}" name="id">
+        <input type="hidden" value="{{ id }}" name="id">
         <input type="hidden" value="{{ to }}" name="to">
         <input type="hidden" value="{{ fro }}" name="fro">
         <div class="form-group">

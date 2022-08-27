@@ -1,37 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-md-auto gap-2">
-        <li class="nav-item rounded">
-          <a class="nav-link active" aria-current="page" href="/home"><i class="bi bi-house-fill me-2"></i>Home</a>
-        </li>
-        <li class="nav-item rounded">
-          <a class="nav-link" href="#"><i class="bi bi-people-fill me-2"></i>About</a>
-        </li>
-        <li class="nav-item rounded">
-          <a class="nav-link" href="#"><i class="bi bi-telephone-fill me-2"></i>Contact</a>
-        </li>
-          {% if user.is_authenticated %}
-        <li class="nav-item dropdown rounded">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-2"></i>{{ user.username }}</a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/home/tickets">Tickets</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="/logout?next=/home">Logout</a></li>
-          </ul>
-        </li>
-          {% else %}
-              <li class="nav-item rounded">
-          <a class="nav-link" href="/login"><i class="bi bi-telephone-fill me-2"></i>Login</a>
-        </li>
-          {% endif %}
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <img class="logo" src="/static/img/bus%20guru.jpeg" alt="logo">
+            <ul class="navbar-nav ms-md-auto gap-2">
+                <li class="nav-item rounded">
+                    <a class="nav-link active" aria-current="page" href="/home"><i class="bi bi-house-fill me-2"></i>Home</a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link" href="#"><i class="bi bi-people-fill me-2"></i>About</a>
+                </li>
+                <li class="nav-item rounded">
+                    <a class="nav-link" href="#"><i class="bi bi-telephone-fill me-2"></i>Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown rounded">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false"><i
+                                class="bi bi-person-fill me-2"></i>{{ user.username }}</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/home/tickets">Tickets</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            {% if  user.is_superuser %}
+                                <li><a class="dropdown-item" href="/server">dashboard</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="/logout?next=/home">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item rounded">
+                        <a class="nav-link" href="/login"><i class="bi bi-telephone-fill me-2"></i>Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>

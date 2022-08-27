@@ -5,3 +5,11 @@
 .dropdown-menu>li{
     margin: 5px 5px !important;
 }
+
+.logo{
+    height: 80px;
+}
+
+.nav{
+    width: 100%;
+}

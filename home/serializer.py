@@ -19,7 +19,7 @@ class RouteBusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Route
-        fields = ['to', 'fro', 'points']
+        fields = ['name', 'points']
 
 
 class BusSerializer(serializers.ModelSerializer):
@@ -85,4 +85,4 @@ class TicketSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ticket
-        fields = ['no', 'details', 'to', 'fro', 'traveller']
+        fields = ['id', 'no', 'details', 'to', 'fro', 'traveller']
