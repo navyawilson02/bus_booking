@@ -44,6 +44,7 @@ application_name = 'drf_template'
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
