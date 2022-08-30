@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import BusViewSet, SelectBus, TicketViewSet, HomePage, BusList, BookBus, Tickets, TicketCancel
+from .views import BusViewSet, SelectBus, TicketViewSet, HomePage, BusList, BookBus, Tickets, TicketCancel, AboutPage, \
+    ContactPage
 
 # Setup the URLs and include login URLs for the browsable API.
 router = DefaultRouter()
@@ -14,5 +15,7 @@ urlpatterns = [
     path(r'tickets/', Tickets),
     path(r'tickets/cancel', TicketCancel),
     path(r'select/', SelectBus),
+    path(r'about/', AboutPage),
+    path(r'contact/', ContactPage),
     path(r'', include(router.urls)),
 ]

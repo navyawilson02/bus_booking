@@ -26,6 +26,13 @@ def HomePage(request):
     return render(request, template_name="home.html", context=context)
 
 
+def ContactPage(request):
+    return render(request, template_name="contact.html")
+
+
+def AboutPage(request):
+    return render(request, template_name="about.html")
+
 def BusList(request):
     start = request.GET['source']
     end = request.GET['dest']
@@ -106,7 +113,7 @@ def BookBus(request):
         tickets.append(TicketSerializer(ticket).data)
     return render(request, template_name="busbooked.html", context={"tickets": tickets})
 
-
+@login_required(login_url="/login")
 def SelectBus(request):
     id = request.GET.get('id', None)
     to = request.GET.get('to', None)

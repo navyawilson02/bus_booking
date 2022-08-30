@@ -23,6 +23,7 @@
 
 .bus-details{
     display: flex;
+    flex-direction: column;
 }
 
 .passenger-details> div{
