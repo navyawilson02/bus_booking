@@ -1,1 +1,50 @@
-dd
+{% extends 'root.html' %} {% load static %} {% block css %} {{ block.super }}
+    <link href="{% static 'css/home.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/ticket.css' %}" rel="stylesheet"/>
+    {% comment %} <link href="{% static 'css/home_boot.css' %}" rel="stylesheet" /> {% endcomment %}
+{% endblock %} {% block body %}
+    {% include 'topnav.html' %}
+    <div class="wrap">
+        {% for ticket in tickets %}
+            <div class="ticket-card">
+                <div class="passenger-details">
+                    <div>
+                        Name: {{ ticket.traveller.name }}
+                    </div>
+                    <div>
+                        Age: {{ ticket.traveller.age }}
+                    </div>
+                    <div>
+                        Gender: {{ ticket.traveller.gender }}
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div>Bus details:</div>
+                    <div>
+                        No: {{ ticket.details.bus.no }}
+                    </div>
+                    <div>
+                        from: {{ ticket.fro.place.place }}
+                    </div>
+                    <div>
+                        to: {{ ticket.to.place.place }}
+                    </div>
+                    <div>
+                        Type: {{ ticket.details.bus.bus_type }}
+                    </div>
+                </div>
+                <div >
+                    <div>Seat: {{ ticket.no }}</div>
+                    <div>Date: {{ ticket.details.day }}</div>
+                    <div>Boarding time: {{ ticket.fro.time }}</div>
+                    <div>Arrival time: {{ ticket.to.time }}</div>
+                    <div></div>
+
+                </div>
+            <div>
+                <a href="/home/tickets/cancel?id={{ ticket.id }}">Cancel</a>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
