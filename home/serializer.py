@@ -24,10 +24,12 @@ class RouteBusSerializer(serializers.ModelSerializer):
 
 class BusSerializer(serializers.ModelSerializer):
     route = RouteBusSerializer()
+    bus_type = serializers.CharField(source='get_type_display')
+
 
     class Meta:
         model = Bus
-        fields = ['id', 'no', 'type', 'capacity', 'route']
+        fields = ['id', 'no', 'type', 'capacity', 'route', 'bus_type']
 
 
 class WorkingDaySerializer(serializers.ModelSerializer):

@@ -5,7 +5,7 @@
 <link href="{% static 'css/home_boot.css' %}" rel="stylesheet" /> {% endcomment %}
 {% endblock %}
 {% block body %}
-{% include 'topnav.html' %}
+    {% include 'topnav.html' %}
 
     <div class="wrap">
         {% if buses %}
@@ -20,6 +20,10 @@
                         <div style="color:#ff6669;font-weight: bold">
                             {{ bus.bus.no }}
                         </div>
+                    </div>
+                    <div class="vr"></div>
+                    <div>
+                        {{ bus.bus.bus_type }}
                     </div>
                     <div class="vr"></div>
                     <div class="bus-card-middle">
@@ -44,7 +48,7 @@
                     </div>
                 </div>
                 <div>
-{#                    {{ bus }}#}
+                    {#                    {{ bus }}#}
                 </div>
 
             {% endfor %}
